@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+ipykernel = "*"
+mock = "*"
+nose2 = "*"
+pytest = "*"
+responses = "*"
+mypy = "*"
+flake8 = "*"
+black = "*"
+pytest-cov = "*"
+pre-commit = "*"
+build = "*"
+sphinx = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
