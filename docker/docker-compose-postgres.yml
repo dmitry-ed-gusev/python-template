@@ -1,0 +1,77 @@
+###############################################################################
+#
+#     Docker Composer file for starting up PostgreSql DBMS 11.X
+#     On start up script does the following things:
+#       * automatically reads .env file and exports all variables from it
+#       * executes initializing sql scripts
+#       * as a DBMS data storage local folder attached (see volumes:)
+#
+#     Created:  Dmitrii Gusev, 30.01.2022
+#     Modified:
+#
+###############################################################################
+
+# todo: review the file and adjust it
+
+version: '3.5'
+
+# docker services
+services:
+
+  # postgresql dbms service
+  postgres_db:
+    container_name: census-postgres
+    image: postgres:11.7
+    # attach some local resources to container
+    volumes:
+      # attach init scripts to container (execution in alphabetical order!)
+      - ./db/prod-pgsql-1-init-schema.sql:/docker-entrypoint-initdb.d/prod-pgsql-1-init-schema.sql
+      - ./db/prod-pgsql-2-init-data.sql:/docker-entrypoint-initdb.d/prod-pgsql-2-init-data.sql
+      # postgres data catalog (empty it if you need to re-run init scripts)
+      - ./db/.postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - census_network
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: CENSUS_DB
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # adminer - formerly phpMySqlAdmin, currently - just single php file.
+  # access url: http://localhost:8080; dbms host: census-postgres (postgres container name!)
+  # todo: probably we don't need two UIs for DBMS
+#  adminer:
+#    container_name: census-pgadminer
+#    image: adminer
+#    restart: unless-stopped
+#    networks:
+#      - census_network
+#    ports:
+#      - "8181:8080"
+#    depends_on:
+#      - postgres_db
+
+  # classical postgres admin tool, access url: http://localhost:5050; dbms host: census-postgres (postgres container name!)
+  pgadmin:
+    container_name: census-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      # email used as user name
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80" # format is <local port>:<container port>
+    networks:
+      - census_network
+    restart: unless-stopped
+    depends_on:
+      - postgres_db
+
+# networks configuration
+networks:
+  census_network:
+    driver: bridge
+    name: census_app_network

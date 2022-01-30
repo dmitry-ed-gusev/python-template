@@ -1,0 +1,31 @@
+###################################################################################################
+#
+#     Docker Composer file for starting up MS SQL DBMS 2017.
+#
+#     Created:  Dmitrii Gusev, 30.01.2022
+#     Modified:
+#
+###################################################################################################
+
+version: '3.5'
+
+# docker services to run
+services:
+  mssql:
+    container_name: mssql-2017
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    restart: unless-stopped
+    networks:
+      - mssql_network
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: MssqlPassword123!
+      MSSQL_PID: Express # DBMS server version, see more in docker image info (Docker Hub)
+    ports:
+      - "1433:1433" # DBMS port
+
+# network configuration
+networks:
+  mssql_network:
+    driver: bridge
+    name: mssql-network
