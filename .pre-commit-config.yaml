@@ -15,14 +15,14 @@ repos:
     - id: black
       name: black
       entry: pipenv run black
-      args: [––quiet]
+      args: [--quiet]
       language: system
       types: [python]
 
     - id: mypy
       name: mypy
       entry: pipenv run mypy
-      args: ["––follow–imports=skip"]
+      args: ["--follow-imports=skip"]
       language: system
       types: [python]
 

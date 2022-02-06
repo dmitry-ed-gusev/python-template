@@ -8,11 +8,10 @@
 #            environment (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified:
+#   Modified: Dmitrii Gusev, 06.02.2022
 #
 ###############################################################################
 
-# todo: review the script and apply where necessary
 
 # -- verbose output mode
 VERBOSE="--verbose"
@@ -21,10 +20,14 @@ export LANG='en_US.UTF-8'
 BUILD_DIR='build/'
 DIST_DIR='dist/'
 # -- local ipykernel name
-IPYKERNEL_NAME='fleet-service-kernel'
+IPYKERNEL_NAME='python_template_ipkernel'
 
 clear
 printf "Development Virtual Environment setup is starting...\n\n"
+
+# -- upgrade pip
+echo "Upgrading pip."
+pip install --upgrade pip
 
 # -- upgrading pipenv (just for the case)
 echo "Upgrading pipenv."
@@ -48,7 +51,6 @@ rm Pipfile.lock
 
 # -- install all dependencies, incl. development
 echo "Installing dependencies, updating all + outdated."
-pipenv lock ${VERBOSE}
 pipenv install --dev ${VERBOSE}
 
 # -- install local ipykernel
@@ -56,10 +58,12 @@ echo "Installing local ipykernel + check"
 pipenv run ipython kernel install --user --name=${IPYKERNEL_NAME}
 # -- list installed ipykernels
 jupyter kernelspec list
+sleep 5
 
 # -- update all + outdated
+# todo: do we need these updates?
 #pipenv update --clear ${VERBOSE}
-pipenv update --outdated --clear ${VERBOSE}
+#pipenv update --outdated --clear ${VERBOSE}
 
 # - check for vulnerabilities and show dependencies graph
 echo "Checking virtual environment for vulnerabilities."
@@ -67,7 +71,5 @@ pipenv check
 pipenv graph
 
 # - outdated packages report
-echo
-echo "Outdated packages list:"
+printf "\n\nOutdated packages list (pip list):\n"
 pipenv run pip list --outdated
-echo

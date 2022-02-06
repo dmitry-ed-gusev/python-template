@@ -12,11 +12,10 @@
 #            environment (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified:
+#   Modified: Dmitrii Gusev, 06.02.2022
 #
 ###############################################################################
 
-# todo: review the script and apply where necessary
 
 export LANG='en_US.UTF-8'
 TMP_FILE="req.txt"
@@ -33,18 +32,19 @@ pip freeze > ${TMP_FILE}
 
 # -- remove all dependencies
 pip uninstall -r ${TMP_FILE} -y
-echo "  - uninstalled current dependencies - done"
+printf "\n\n  - uninstalled current dependencies - done\n"
 
 # -- list the current empty environment
 printf "\n\n--- Current Empty Environment ---\n\n"
 pip list
+sleep 5
 
 # -- remove temporary file
 rm ${TMP_FILE}
-echo "  - removing tmp file ${TMP_FILE} - done"
+printf "\n\n  - removing tmp file %s - done\n" ${TMP_FILE}
 
 # -- install necessary dependencies
 pip install pipenv pytest jupyter
 echo "  - installing dependencies - done"
 
-printf "\n\nPython Development Environment setup is done."
+printf "\n\nPython Development Environment setup is done.\n"
