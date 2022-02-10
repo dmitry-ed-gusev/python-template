@@ -8,7 +8,7 @@
 #            environment (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified: Dmitrii Gusev, 06.02.2022
+#   Modified: Dmitrii Gusev, 09.02.2022
 #
 ###############################################################################
 
@@ -26,35 +26,35 @@ clear
 printf "Development Virtual Environment setup is starting...\n\n"
 
 # -- upgrade pip
-echo "Upgrading pip."
-pip install --upgrade pip
+printf "\nUpgrading pip.\n"
+pip --no-cache-dir install --upgrade pip
 
 # -- upgrading pipenv (just for the case)
-echo "Upgrading pipenv."
-pip install --upgrade pipenv
+printf "\nUpgrading pipenv.\n"
+pip --no-cache-dir install --upgrade pipenv
 
 # -- remove existing virtual environment, clear caches
-echo "Deleting virtual environment and clearing caches."
+printf "\nDeleting virtual environment and clearing caches.\n"
 pipenv --rm ${VERBOSE}
 pipenv --clear ${VERBOSE}
 
 # -- clean build and distribution folders
-echo "Clearing temporary directories."
-echo "Deleting ${BUILD_DIR}..."
-rm -r "${BUILD_DIR}"
-echo "Deleting ${DIST_DIR}..."
-rm -r "${DIST_DIR}"
+printf "\nClearing temporary directories.\n"
+printf "\nDeleting [%s]...\n" ${BUILD_DIR}
+rm -r ${BUILD_DIR}
+printf "\nDeleting [%s]...\n" ${BUILD_DIR}
+rm -r ${DIST_DIR}
 
 # -- removing Pipfile.lock (re-generate it)
-echo "Removing Pipfile.lock"
+printf "\nRemoving Pipfile.lock\n"
 rm Pipfile.lock
 
 # -- install all dependencies, incl. development
-echo "Installing dependencies, updating all + outdated."
+printf "\nInstalling dependencies, updating all + outdated.\n"
 pipenv install --dev ${VERBOSE}
 
 # -- install local ipykernel
-echo "Installing local ipykernel + check"
+printf "\nInstalling local ipykernel + check\n"
 pipenv run ipython kernel install --user --name=${IPYKERNEL_NAME}
 # -- list installed ipykernels
 jupyter kernelspec list
@@ -62,11 +62,10 @@ sleep 5
 
 # -- update all + outdated
 # todo: do we need these updates?
-#pipenv update --clear ${VERBOSE}
-#pipenv update --outdated --clear ${VERBOSE}
+#pipenv update --clear --outdated ${VERBOSE}
 
 # - check for vulnerabilities and show dependencies graph
-echo "Checking virtual environment for vulnerabilities."
+printf "\nChecking virtual environment for vulnerabilities.\n"
 pipenv check
 pipenv graph
 

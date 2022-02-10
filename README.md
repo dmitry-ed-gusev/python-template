@@ -36,10 +36,16 @@ Adjust this template as necessary. If you don't need any files - remove them aft
 
 Review the content and adjust as needed. Here are some advice, what may be useful:
 
-- **[docker]** - use docker files as needed
-- **.gitignore** - file should cover most of the cases for python project, but some adjustments may be required
-- **build.sh** - TBD
-- **env_virtual_setup.sh** - TBD
-- **Pipfile** - TBD
-- **README.md** - definitely, you will write your own documentation :)
-- **setup.cfg** - TBD
+- [docker] - use docker files as needed
+- .gitignore** - file should cover most of the cases for python project, but some adjustments may be required
+- build.sh - TBD
+- env_virtual_setup.sh - TBD
+- Pipfile - TBD
+- README.md - definitely, you will write your own documentation :)
+- setup.cfg - TBD
+
+### Local Installation of the code
+
+In order to install the current package/source code locally, add the following line to the Pipfile in the section [packages]:  
+
+`<your_package_name> = {editable = true, path = "."}`
