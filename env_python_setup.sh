@@ -25,7 +25,7 @@ clear
 printf "Python Development Environment setup is starting...\n\n"
 
 # -- upgrading pip (just for the case)
-pip install --upgrade pip
+pip --no-cache-dir install --upgrade pip
 printf "\n\n ** upgrading pip - done **\n"
 
 # -- freeze current global dependencies
@@ -43,10 +43,10 @@ sleep 5
 
 # -- remove temporary file
 rm ${TMP_FILE}
-printf "\n\n ** removing tmp file %s - done **\n" ${TMP_FILE}
+printf "\n\n ** removing tmp file %s - done **\n\n" ${TMP_FILE}
 
 # -- install necessary dependencies
-pip install pipenv pytest jupyter
+pip --no-cache-dir install pipenv pytest jupyter
 printf "\n\n ** installing core dependencies - done **\n"
 
 printf "\n\nPython Development Environment setup is done.\n\n\n"
