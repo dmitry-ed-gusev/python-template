@@ -10,24 +10,24 @@ the web-projects this template should be adjusted a bit more.
 ## Repository Content
 
 - [[docker](docker)] - folder with Docker files for various DBs
-  - [docker-compose-mssql.yml](docker/docker-compose-mssql.yml) - TBD
-  - [docker-compose-mysql.yml](docker/docker-compose-mysql.yml) - TBD
-  - [docker-compose-postgres.yml](docker/docker-compose-postgres.yml) - TBD
-- [[docs](docs)] - documantation catalog
+  - [docker-compose-mssql.yml](docker/docker-compose-mssql.yml) - dockerised MS SQL Express DBMS
+  - [docker-compose-mysql.yml](docker/docker-compose-mysql.yml) - dockerised MySql DBMS
+  - [docker-compose-postgres.yml](docker/docker-compose-postgres.yml) - dockerised Postgresql DBMS
+- [[docs](docs)] - project documantation catalog
 - [[jupyter](jupyter)] - jupyter playbooks catalog
 - [[tests](tests)] - unit/integration tests catalog
-- [.coveragerc](.coveragerc) - TBD
-- [.gitattributes](.gitattributes) - TBD
-- [.gitignore](.gitignore) - TBD
+- [.coveragerc](.coveragerc) - settings file for pytest coverage module
+- [.gitattributes](.gitattributes) - parameters for the GIT repository (line endings, auto conversions, etc.)
+- [.gitignore](.gitignore) - GIT repository ignoring files
 - [.pre-commit-config.yaml](.pre-commit-config.yaml) - TBD
 - [build.sh](build.sh) - TBD
-- [env_python_setup.sh](env_python_setup.sh) - TBD
-- [env_virtual_setup.sh](env_virtual_setup.sh) - TBD
-- [LICENSE](LICENSE) - TBD
-- [Pipfile](Pipfile) - TBD
-- [pytest.ini](pytest.ini) - TBD
-- [README.md](README.md) - this documentation
-- [setup.cfg](setup.cfg) - main configuration file for the project
+- [env_python_setup.sh](env_python_setup.sh) - shell script for the system python environment setup/reset
+- [env_virtual_setup.sh](env_virtual_setup.sh) - shell script for the pipenv virtual environment setup/reset
+- [LICENSE](LICENSE) - application/module license
+- [Pipfile](Pipfile) - pipenv configuration file
+- [pytest.ini](pytest.ini) - pytest module additional setup parameters
+- [README.md](README.md) - this documentation file
+- [setup.cfg](setup.cfg) - main configuration file for the project + setuptools
 - [setup.py](setup.py) - dummy setup file for setuptools, necessary meta-information moved to setup.cfg
 
 Adjust this template as necessary. If you don't need any files - remove them after creating your repository from this template.
