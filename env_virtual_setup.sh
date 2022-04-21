@@ -37,15 +37,15 @@ pip --no-cache-dir install --upgrade pipenv
 
 # -- remove existing virtual environment, clear caches
 printf "\nDeleting virtual environment and clearing caches.\n"
-pipenv --rm ${VERBOSE}
+pipenv --rm ${VERBOSE} || printf "No virtual environment fount for the project!\n"
 pipenv --clear ${VERBOSE}
 
-# -- clean build and distribution folders
+# -- clean build and distribution folders (delete them)
 printf "\nClearing temporary directories.\n"
 printf "\nDeleting [%s]...\n" ${BUILD_DIR}
-rm -r ${BUILD_DIR}
+rm -r ${BUILD_DIR} || printf "%s doesn't exist!\n" ${BUILD_DIR}
 printf "\nDeleting [%s]...\n" ${BUILD_DIR}
-rm -r ${DIST_DIR}
+rm -r ${DIST_DIR} || printf "%s doesn't exist!\n" ${DIST_DIR}
 
 # -- removing Pipfile.lock (re-generate it)
 printf "\nRemoving Pipfile.lock\n"
