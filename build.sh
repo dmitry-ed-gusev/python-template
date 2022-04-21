@@ -7,12 +7,15 @@
 #   system shell) and from the pipenv environment as well (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified:
+#   Modified: Dmitrii GUsev, 21.04.2022
 #
 ###############################################################################
 
 # todo: review the script and apply where necessary
 # todo: do put output of utilities - mypy/black/flake8 - to a separated file(s)?
+
+# -- safe bash scripting
+set -euf -o pipefail
 
 # -- verbose output mode
 VERBOSE="--verbose"

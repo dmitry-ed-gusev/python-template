@@ -8,10 +8,12 @@
 #            environment (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified: Dmitrii Gusev, 09.02.2022
+#   Modified: Dmitrii Gusev, 21.04.2022
 #
 ###############################################################################
 
+# -- safe bash scripting
+set -euf -o pipefail
 
 # -- verbose output mode
 VERBOSE="--verbose"
