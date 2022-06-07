@@ -9,6 +9,11 @@
 
 """
 
+
+def check(i: int) -> int:
+    return i + 10
+
+
 def main():
     print("Hello World!")
 

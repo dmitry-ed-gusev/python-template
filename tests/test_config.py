@@ -2,10 +2,10 @@
 # coding: utf–8
 
 """
-    Rally Tool unit tests for config module.
+    Unit tests for config module.
 
     Created:  Dmitrii Gusev, 07.06.2022
-    Modified:
+    Modified: Dmitrii Gusev, 07.06.2022
 """
 
 import pytest
