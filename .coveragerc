@@ -7,7 +7,7 @@
 #       - https://pytest-cov.readthedocs.io/en/latest/index.html
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified: Dmitrii Gusev, 21.04.2022
+#   Modified: Dmitrii Gusev, 07.06.2022
 #
 ###############################################################################
 
@@ -26,7 +26,7 @@ precision = 2
 
 [html]
 directory = .coverage/htmlcoverage
-title = "<your project name here>: Tests Coverage Report"
+title = "Template Project: Tests Coverage Report"
 
 [xml]
 output = .coverage/coverage.xml
