@@ -1,11 +1,14 @@
 # Python Template Repository
 
-(C) 2022, Dmitrii Gusev
+(C) 2022 - 2023, Dmitrii Gusev
 
 ## Description
 
 Use this repository as template for python projects. Ideal for various utilities/libraries. For
-the web-projects this template should be adjusted a bit more.
+the web-projects this template should be adjusted a bit more or use Django web-site/project generation
+utility.  
+
+This repository uses python version: 3.11
 
 ## Repository Content
 

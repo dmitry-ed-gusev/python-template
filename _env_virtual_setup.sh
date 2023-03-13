@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-###############################################################################
+###################################################################################################
 #
 #   Development environment setup script. Script can be used to re-create
 #   development environment from 'scratch'.
@@ -8,9 +8,9 @@
 #            environment (pipenv shell).
 #
 #   Created:  Dmitrii Gusev, 30.01.2022
-#   Modified: Dmitrii Gusev, 07.06.2022
+#   Modified: Dmitrii Gusev, 12.03.2023
 #
-###############################################################################
+###################################################################################################
 
 # -- safe bash scripting
 set -euf -o pipefail
@@ -28,32 +28,34 @@ clear
 printf "Development Virtual Environment setup is starting...\n\n"
 
 # -- upgrade pip
-printf "\nUpgrading pip.\n"
-pip --no-cache-dir install --upgrade pip
+printf "\n--- Upgrading pip (if any) ---\n"
+# pip --no-cache-dir install --upgrade pip # option I: working but not in a mingw/gitbash
+python -m pip --no-cache-dir install --upgrade pip # option II: works in mingw/gitbash
 
 # -- upgrading pipenv (just for the case)
-printf "\nUpgrading pipenv.\n"
+printf "\n--- Upgrading pipenv (if any) ---\n"
 pip --no-cache-dir install --upgrade pipenv
 
 # -- remove existing virtual environment, clear caches
-printf "\nDeleting virtual environment and clearing caches.\n"
-pipenv --rm ${VERBOSE} || printf "No virtual environment fount for the project!\n"
+printf "\n--- Deleting virtual environment and clearing caches ---\n"
+pipenv --rm ${VERBOSE} || printf "No virtual environment found for the project!\n"
 pipenv --clear ${VERBOSE}
 
 # -- clean build and distribution folders (delete them)
-printf "\nClearing temporary directories.\n"
+printf "\n--- Clearing temporary directories ---\n"
 printf "\nDeleting [%s]...\n" ${BUILD_DIR}
 rm -r ${BUILD_DIR} || printf "%s doesn't exist!\n" ${BUILD_DIR}
 printf "\nDeleting [%s]...\n" ${DIST_DIR}
 rm -r ${DIST_DIR} || printf "%s doesn't exist!\n" ${DIST_DIR}
 
 # -- removing Pipfile.lock (re-generate it)
-printf "\nRemoving Pipfile.lock\n"
+printf "\n--- Removing Pipfile.lock ---\n"
 rm Pipfile.lock || printf "Pipfile.lock doesn't exist!\n"
 
 # -- install all dependencies, incl. development
-printf "\nInstalling dependencies, updating all + outdated.\n"
+printf "\n--- Installing dependencies and updating all ---\n"
 pipenv install --dev ${VERBOSE}
+exit 111
 
 # -- install local ipykernel
 printf "\nInstalling local ipykernel + check\n"
