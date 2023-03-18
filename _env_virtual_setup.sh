@@ -55,7 +55,6 @@ rm Pipfile.lock || printf "Pipfile.lock doesn't exist!\n"
 # -- install all dependencies, incl. development
 printf "\n--- Installing dependencies and updating all ---\n"
 pipenv install --dev ${VERBOSE}
-exit 111
 
 # -- install local ipykernel
 printf "\nInstalling local ipykernel + check\n"
